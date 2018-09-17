@@ -25,6 +25,10 @@ mkdir -p ${mydata_dir}
 mkdir -p ${experiments_dir}
 mkdir -p ${myexperiment_dir}
 
+mkdir -p ${myexperiment_dir}/preprocessing
+mkdir -p ${myexperiment_dir}/deblinking
+mkdir -p ${myexperiment_dir}/deblinking/plots
+
 global_config_file=conf/global_settings.cfg
 
 ### Set some default settings ###
@@ -41,33 +45,49 @@ echo "experimentDir=${myexperiment_dir}" >>  $global_config_file
 echo "" >> $global_config_file
 
 echo "######################################" >> $global_config_file
-echo "############# PARAMS #################" >> $global_config_file
+echo "############# PARAMS FOR PREPROCESSING #################" >> $global_config_file
 echo "######################################" >> $global_config_file
 echo "" >> $global_config_file
 
 echo "experiment_name=${myexperiment_name}" >> $global_config_file
-echo "nsubjects=5          #Number of participants" >> $global_config_file
+echo "nsubjects=3          #Number of participants" >> $global_config_file
 echo "blocks=6            #Number of blocks" >> $global_config_file
 echo "trials=20             #Number of trials in each block" >> $global_config_file
 echo "practicetrials=5            #Trials in Block 1" >> $global_config_file
 echo "samplingFreq=500" >> $global_config_file
 echo "downsamplingFreq=50" >> $global_config_file
 echo "discardTrial=[1,2,3,21,22,23,41,42,43,61,62,63,81,82,83]  #Trials to exclude" >> $global_config_file
-echo "" >> $global_config_file
-
 echo "file_pattern=p              #pattern of file eg. p1" >> $global_config_file
-echo "file_extension=xlsx" >> $global_config_file
+echo "file_extension=xlsx #Extension for input to preprocessing" >> $global_config_file
+echo "" >> $global_config_file
+
+echo "######################################" >> $global_config_file
+echo "############# PARAMS FOR DEBLINKING #################" >> $global_config_file
+echo "######################################" >> $global_config_file
+echo "" >> $global_config_file
+
+echo "missing_data_symbol=." >> $global_config_file
+echo "blink_threshold=0.2 #20%" >> $global_config_file
+echo "max_trial_duration=7 #in seconds" >> $global_config_file
+echo "start_blink_onset=50 #number of samples" >> $global_config_file
+echo "end_blink_offset=80 #number of samples" >> $global_config_file
+echo "exclusion_list=${mydata_dir}/exclude.txt #exclude file list" >> $global_config_file
 
 echo "" >> $global_config_file
+
+echo "############# DEBLINKING FLAGS #################" >> $global_config_file
+
+echo "plotting=FALSE #plot at samplingFreq" >> $global_config_file
+echo "downsample=TRUE #downsample data" >> $global_config_file
+
+echo "" >> $global_config_file
+
+echo "############# PROCESSING FLAGS #################" >> $global_config_file
 
 echo "PREPROCESSING=TRUE" >> $global_config_file
 echo "DEBLINKING=TRUE" >> $global_config_file
-echo "DOWNSAMPLING=TRUE" >> $global_config_file
-echo "TRIALEXCLUSION=TRUE" >> $global_config_file
 echo "AVERAGING=TRUE" >> $global_config_file
-echo "SMOOTHING=TRUE" >> $
-echo "PLOTTING=TRUE" >> $global_config_file
-
+echo "" >> $global_config_file
 
 echo "Step 1 completed"
 echo "Default configuration settings have been configured in \"$global_config_file\""

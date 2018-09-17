@@ -8,16 +8,6 @@ import ast
 
 
 # This must be grabbed from the config file
-
-#discardTrials = [1,2, 3, 21,22,23,41,42,43,61,62,63,81,82,83]
-#practiceTrials = 5
-#nsubjects = 15
-#file_pattern='p'
-#file_extension='xlsx'
-#dataDir='data/nancy_sus'
-#experiment_name='nancy_sus'
-print((sys.argv))
-
 x = sys.argv[1]
 discardTrials = ast.literal_eval(x)
 practiceTrials = sys.argv[2]

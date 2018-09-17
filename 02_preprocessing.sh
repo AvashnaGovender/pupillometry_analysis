@@ -15,8 +15,8 @@ fi
 
 data_dir=$1
 
-if [ ! "$(ls -A ${dataDir})" ]; then
-    echo "Please place your pupil data files in: ${dataDir}"
+if [ ! "$(ls -A ${data_dir})" ]; then
+    echo "Please place your pupil data files in: ${data_dir}"
     exit 1
 fi
 
