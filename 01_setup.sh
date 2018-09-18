@@ -28,6 +28,10 @@ mkdir -p ${myexperiment_dir}
 mkdir -p ${myexperiment_dir}/preprocessing
 mkdir -p ${myexperiment_dir}/deblinking
 mkdir -p ${myexperiment_dir}/deblinking/plots
+mkdir -p ${myexperiment_dir}/smoothed
+mkdir -p ${myexperiment_dir}/smoothed/plots
+
+
 
 global_config_file=conf/global_settings.cfg
 
@@ -82,10 +86,22 @@ echo "downsample=TRUE #downsample data" >> $global_config_file
 
 echo "" >> $global_config_file
 
+echo "######################################" >> $global_config_file
+echo "############# PARAMS FOR CORRECTION & SMOOTHING #################" >> $global_config_file
+echo "######################################" >> $global_config_file
+
+echo "actual_baseline=2" >> $global_config_file
+echo "true_baseline=1" >> $global_config_file
+echo "moving_average_window=10" >> $global_config_file
+echo "smoothed_plots=TRUE" >> $global_config_file
+
+
+
 echo "############# PROCESSING FLAGS #################" >> $global_config_file
 
 echo "PREPROCESSING=TRUE" >> $global_config_file
 echo "DEBLINKING=TRUE" >> $global_config_file
+echo "CORRECTION_AND_SMOOTHING=TRUE" >> $global_config_file
 echo "AVERAGING=TRUE" >> $global_config_file
 echo "" >> $global_config_file
 
