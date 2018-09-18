@@ -30,6 +30,10 @@ mkdir -p ${myexperiment_dir}/deblinking
 mkdir -p ${myexperiment_dir}/deblinking/plots
 mkdir -p ${myexperiment_dir}/smoothed
 mkdir -p ${myexperiment_dir}/smoothed/plots
+mkdir -p ${myexperiment_dir}/averaging
+mkdir -p ${myexperiment_dir}/averaging/plots
+
+
 
 
 
