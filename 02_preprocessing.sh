@@ -25,8 +25,9 @@ fi
 ########## Preprocessing ##########
 ####################################
 
-preprocessing=false
+preprocessing=true
 concatenate=true  #concatenates all subjects data into a single CSV file
+calc_intelligibility=true
 
 if [ "$preprocessing" = true ]; then
     echo "Step 2: "
@@ -41,6 +42,19 @@ if [ "$concatenate" = true ]; then
     echo "Concatenating all the pupil data"
 
     cat experiments/$experiment_name/preprocessing/*.csv > experiments/$experiment_name/preprocessing/all_pupil_data.csv
+
+    echo "done...!"
+fi
+
+if [ "$calc_intelligibility" = true ]; then
+    echo "Calculating the intelligibility"
+
+    wer_dir=experiments/$experiment_name/preprocessing/WER
+    wer_exclude_list=experiments/$experiment_name/preprocessing/exclude.txt
+    touch experiments/$experiment_name/preprocessing/exclude.txt
+
+    python scripts/calc_intelligibility.py $dataDir/transcripts $nsubjects $exclusion_list $file_pattern $group_mapppings $wer_dir $wer_threshold $wer_exclude_list
+
 
     echo "done...!"
 fi

@@ -1,0 +1,5 @@
+p1 1 group1_correct.txt ['I','C','G','A','E']
+p2 2 group2_correct.txt ['G','I','A','E','C']
+p3 3 group3_correct.txt ['A','E','I','C','G']
+p4 4 group4_correct.txt ['E','G','C','I','A']
+p5 5 group5_correct.txt ['C','A','E','G','I']

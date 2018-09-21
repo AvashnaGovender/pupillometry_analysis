@@ -17,15 +17,19 @@ myexperiment_name=$1
 
 data_dir=${current_working_dir}/data
 mydata_dir=${data_dir}/${myexperiment_name}
+transcripts=${data_dir}/${myexperiment_name}/transcripts
+
 
 myexperiment_dir=${experiments_dir}/${myexperiment_name}
 
 mkdir -p ${data_dir}
 mkdir -p ${mydata_dir}
+mkdir -p $transcripts
 mkdir -p ${experiments_dir}
 mkdir -p ${myexperiment_dir}
 
 mkdir -p ${myexperiment_dir}/preprocessing
+mkdir -p ${myexperiment_dir}/preprocessing/WER
 mkdir -p ${myexperiment_dir}/deblinking
 mkdir -p ${myexperiment_dir}/deblinking/plots
 mkdir -p ${myexperiment_dir}/smoothed
@@ -67,6 +71,9 @@ echo "downsamplingFreq=50" >> $global_config_file
 echo "discardTrial=[1,2,3,21,22,23,41,42,43,61,62,63,81,82,83]  #Trials to exclude" >> $global_config_file
 echo "file_pattern=p              #pattern of file eg. p1" >> $global_config_file
 echo "file_extension=xlsx #Extension for input to preprocessing" >> $global_config_file
+echo "group_mapppings=${mydata_dir}/mappings.txt" >> $global_config_file
+echo "wer_threshold=20 #as a percentage" >> $global_config_file
+
 echo "" >> $global_config_file
 
 echo "######################################" >> $global_config_file
@@ -79,7 +86,7 @@ echo "blink_threshold=0.2 #20%" >> $global_config_file
 echo "max_trial_duration=7 #in seconds" >> $global_config_file
 echo "start_blink_onset=50 #number of samples" >> $global_config_file
 echo "end_blink_offset=80 #number of samples" >> $global_config_file
-echo "exclusion_list=${mydata_dir}/exclude.txt #exclude file list" >> $global_config_file
+echo "exclusion_list=experiments/$experiment_name/preprocessing/exclude.txt #exclude file list" >> $global_config_file
 
 echo "" >> $global_config_file
 
