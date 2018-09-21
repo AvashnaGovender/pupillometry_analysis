@@ -175,9 +175,10 @@ if __name__ == '__main__':
         for idx,lists in enumerate(content):
             if n in lists:
                 exclude = content[idx]
-                exclude_trials = exclude.split(" ")
+                exclude_trials = exclude.split("#")
                 exclude_trials = exclude_trials[1]
 
+        print(exclude_trials)
         for trial_index in trials:
 
             if str(trial_index) not in exclude_trials:

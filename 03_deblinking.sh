@@ -30,7 +30,8 @@ if [ "$DEBLINKING" = TRUE ]; then
     echo "Deblinking pupil data in $data_dir ..."
 
     plots_dir=$experimentDir/deblinking/plots
+    exclude_list=experiments/$experiment_name/preprocessing/exclude.txt
 
-    python scripts/deblinking.py $samplingFreq $missing_data_symbol $file_pattern $blink_threshold $max_trial_duration $start_blink_onset $end_blink_offset $plotting $nsubjects ${data_dir} $plots_dir $downsample $downsamplingFreq $exclusion_list $experimentDir
+    python scripts/deblinking.py $samplingFreq $missing_data_symbol $file_pattern $blink_threshold $max_trial_duration $start_blink_onset $end_blink_offset $plotting $nsubjects ${data_dir} $plots_dir $downsample $downsamplingFreq $exclude_list $experimentDir
 
 fi
