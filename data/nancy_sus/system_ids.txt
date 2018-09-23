@@ -1,0 +1,5 @@
+A:Natural
+G:Hybrid
+C:HMM
+E:Unit Selection
+I:LQ-HMM
