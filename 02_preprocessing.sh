@@ -25,8 +25,8 @@ fi
 ########## Preprocessing ##########
 ####################################
 
-preprocessing=true
-concatenate=true  #concatenates all subjects data into a single CSV file
+preprocessing=false
+concatenate=false  #concatenates all subjects data into a single CSV file
 calc_intelligibility=true
 
 if [ "$preprocessing" = true ]; then
@@ -53,7 +53,14 @@ if [ "$calc_intelligibility" = true ]; then
     wer_exclude_list=experiments/$experiment_name/preprocessing/exclude.txt
     touch experiments/$experiment_name/preprocessing/exclude.txt
 
-    python scripts/calc_intelligibility.py $dataDir/transcripts $nsubjects $exclusion_list $file_pattern $group_mapppings $wer_dir $wer_threshold $wer_exclude_list
+    if [ "$system_mapping" == TRUE ]; then
+      systems_map_file=${system_mapping_filepath}
+    else
+      systems_map_file=None
+    fi
+
+    python scripts/calc_intelligibility.py $dataDir/transcripts $nsubjects $exclusion_list $file_pattern $group_mapppings $wer_dir $wer_threshold $exclude_flag $average_WER $generate_exclusions $wer_trial_exclusion_threshold $wer_trial_exclusion_file $systems_map_file
+
 
 
     echo "done...!"

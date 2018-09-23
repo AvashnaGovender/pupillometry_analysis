@@ -36,6 +36,9 @@ mkdir -p ${myexperiment_dir}/smoothed
 mkdir -p ${myexperiment_dir}/smoothed/plots
 mkdir -p ${myexperiment_dir}/averaging
 mkdir -p ${myexperiment_dir}/averaging/plots
+mkdir -p ${myexperiment_dir}/self_reporting
+mkdir -p ${myexperiment_dir}/self_reporting/plots
+
 
 
 
@@ -73,6 +76,13 @@ echo "file_pattern=p              #pattern of file eg. p1" >> $global_config_fil
 echo "file_extension=xlsx #Extension for input to preprocessing" >> $global_config_file
 echo "group_mapppings=${mydata_dir}/mappings.txt" >> $global_config_file
 echo "wer_threshold=20 #as a percentage" >> $global_config_file
+echo "exclude_flag=TRUE #If you wish to exclude trials based on WER threshold" >> $global_config_file
+echo "exclusion_list=experiments/${myexperiment_name}/preprocessing/exclude.txt #exclude file list" >> $global_config_file
+echo "average_WER=TRUE #If you wish to average WER across conditions" >> $global_config_file
+echo "wer_trial_exclusion_file=experiments/${myexperiment_name}/preprocessing/WER/missing.txt #If there are trials to exludess from the average calculation" >> $global_config_file
+echo "wer_trial_exclusion_threshold=100 #threshold to generate exclusion list automatically" >> $global_config_file
+echo "generate_exclusions=TRUE"  >> $global_config_file
+
 
 echo "" >> $global_config_file
 
@@ -86,7 +96,6 @@ echo "blink_threshold=0.2 #20%" >> $global_config_file
 echo "max_trial_duration=7 #in seconds" >> $global_config_file
 echo "start_blink_onset=50 #number of samples" >> $global_config_file
 echo "end_blink_offset=80 #number of samples" >> $global_config_file
-echo "exclusion_list=experiments/$experiment_name/preprocessing/exclude.txt #exclude file list" >> $global_config_file
 
 echo "" >> $global_config_file
 
@@ -106,7 +115,12 @@ echo "true_baseline=1" >> $global_config_file
 echo "moving_average_window=10" >> $global_config_file
 echo "smoothed_plots=TRUE" >> $global_config_file
 
+echo "######################################" >> $global_config_file
+echo "############# PARAMS SELF-REPORTING #################" >> $global_config_file
+echo "######################################" >> $global_config_file
 
+echo "system_mapping=TRUE #Systems have defined mappings"  >> $global_config_file
+echo "system_mapping_filepath=${mydata_dir}/system_ids.txt #Systems have defined mappings"  >> $global_config_file
 
 echo "############# PROCESSING FLAGS #################" >> $global_config_file
 
@@ -114,6 +128,8 @@ echo "PREPROCESSING=TRUE" >> $global_config_file
 echo "DEBLINKING=TRUE" >> $global_config_file
 echo "CORRECTION_AND_SMOOTHING=TRUE" >> $global_config_file
 echo "AVERAGING=TRUE" >> $global_config_file
+echo "SELF_REPORT=TRUE" >> $global_config_file
+
 echo "" >> $global_config_file
 
 echo "Step 1 completed"
